@@ -23,12 +23,40 @@ app.use(bodyParser.json())
 
 
 
-
-app.get('/', (req, res) => {
-    res.render('index', {
-      
-    });
+app.get('/', (req, res, next) => {
+    try {
+        res.render('index', {
+            maximumOvers: cricketScoreKeeper.getMaxOvers(),
+            availableWickets: cricketScoreKeeper.getWicketsAvailable(),
+            scoreTotal: cricketScoreKeeper.getCurrentScore()
+        });
+    }
+    catch(error) {
+        next(error)
+    }
 }) 
+
+app.post('/add/', (req, res, next) => {
+    try{
+        cricketScoreKeeper.setScore(req.body.score);
+    } 
+    catch(error) {
+        next(error);
+    }
+
+    res.redirect('/');
+});
+
+app.post('/maximum', (req, res, next) => {
+    try{
+        cricketScoreKeeper.setMaxOvers(req.body.maximum);
+    } 
+    catch(error) {
+        next(error);
+    }
+
+    res.redirect('/');
+});
 
 const PORT = process.env.PORT || 4000;
 

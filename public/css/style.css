@@ -1,27 +1,47 @@
-.box {
-  padding: 0.75em;
-  border-radius : 0.5em;
-  border : 1px solid #ddd;
-  height: auto;
-  margin-bottom: 1em;
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+
+.icon-block {
+  padding: 0 15px;
 }
-  
-.warning {
-  color: orange;
-  font-weight: bold;
+.icon-block .material-icons {
+	font-size: inherit;
 }
 
-.danger {
-  color: crimson;
-  font-weight: bold;
+.container {
+  margin-top: 42px;
 }
 
-.black {
-  color: chartreuse;
-  font-weight: bold;
+.counter {
+    margin-top: 0;
+    /* border: solid #4ec8ba 1px; */
+    background-color: white;
+    width: 65px;
+    height: 40px;
+    border-radius: 100%;
+    text-align: center;
 }
 
-.total {
-  font-weight: bold;
-  font-size: 2em;
+.errorMessage {
+  padding: 1px;
+  border-radius: 3px;
+  color: #fff;
+  background-color: #EF534F;
+}
+
+/* .infoMessage {
+  padding: 1px;
+  border-radius: 3px;
+  color: #fff;
+  background-color: yellow;
+  display: block;
+} */
+
+table {
+  border: solid 1px #DCDBDC !important;
 }
