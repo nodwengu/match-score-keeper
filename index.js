@@ -34,7 +34,6 @@ app.get('/', (req, res, next) => {
 app.post('/add/', (req, res, next) => {
     try{
         cricketScoreKeeper.setScore(req.body.score);
-        console.log(cricketScoreKeeper.getFallenWickets());
     } 
     catch(error) {
         next(error);
@@ -67,6 +66,16 @@ app.get('/:current_score/:wickets_fallen', (req, res, next) => {
         next(error)
     }
 });
+
+app.get('/reset', (req, res, next) => {
+    try {
+        cricketScoreKeeper.reset();
+    } catch (error) {
+        next(error)
+    }
+
+    res.redirect('/');
+})
 
 const PORT = process.env.PORT || 4000;
 

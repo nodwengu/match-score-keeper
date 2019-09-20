@@ -9,6 +9,7 @@ module.exports = function CricketScoreKeeper() {
   function setScore(scoreForOver) {
     let scores = scoreForOver.split('')
 
+    if(scores.length > 5){ return }
     if(maxOvers <= 0) { return }
     if(totalWicketsAvail <= 0) { return }
     
@@ -56,6 +57,12 @@ module.exports = function CricketScoreKeeper() {
     return scoresFor;
   }
 
+  function reset() {
+    maxOvers = 6;
+    currentScore = 0;
+    totalWicketsAvail = 10;
+    fallenWickets = 0;
+  }
 
  
   return {
@@ -66,6 +73,7 @@ module.exports = function CricketScoreKeeper() {
     getWicketsAvailable,
     getFallenWickets,
     getScoresFor,
-    setScoresFor
+    setScoresFor,
+    reset
   }
 }
