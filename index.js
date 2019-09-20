@@ -18,16 +18,12 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
-
-
-
-
-
 app.get('/', (req, res, next) => {
     try {
         res.render('index', {
             maximumOvers: cricketScoreKeeper.getMaxOvers(),
-            availableWickets: cricketScoreKeeper.getWicketsAvailable()
+            availableWickets: cricketScoreKeeper.getWicketsAvailable(),
+            scoreTotal: cricketScoreKeeper.getCurrentScore(),
         });
     }
     catch(error) {
@@ -62,9 +58,8 @@ app.get('/:current_score/:wickets_fallen', (req, res, next) => {
         let wickets_fallen = req.params.wickets_fallen;
 
         cricketScoreKeeper.setScoresFor(current_score, wickets_fallen)
-        
+
         res.render('scoreFor', {
-            scoreTotal: cricketScoreKeeper.getCurrentScore(),
             scoresFor: cricketScoreKeeper.getScoresFor()
         });
         
