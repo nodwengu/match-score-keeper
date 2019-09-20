@@ -31,6 +31,13 @@ describe('Match Score Keeper Function ', () => {
     assert.equal(0, cricketScoreKeeper.getCurrentScore());
   })
 
+  it('Should be able to return the fallen wickets', () => {
+    const cricketScoreKeeper = CricketScoreKeeper();
+
+    cricketScoreKeeper.setScore('12ww--');
+    assert.equal(2, cricketScoreKeeper.getFallenWickets());
+  })
+
 
   
 })

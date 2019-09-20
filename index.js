@@ -27,8 +27,7 @@ app.get('/', (req, res, next) => {
     try {
         res.render('index', {
             maximumOvers: cricketScoreKeeper.getMaxOvers(),
-            availableWickets: cricketScoreKeeper.getWicketsAvailable(),
-            scoreTotal: cricketScoreKeeper.getCurrentScore()
+            availableWickets: cricketScoreKeeper.getWicketsAvailable()
         });
     }
     catch(error) {
@@ -39,11 +38,11 @@ app.get('/', (req, res, next) => {
 app.post('/add/', (req, res, next) => {
     try{
         cricketScoreKeeper.setScore(req.body.score);
+        console.log(cricketScoreKeeper.getFallenWickets());
     } 
     catch(error) {
         next(error);
     }
-
     res.redirect('/');
 });
 
@@ -54,8 +53,24 @@ app.post('/maximum', (req, res, next) => {
     catch(error) {
         next(error);
     }
-
     res.redirect('/');
+});
+
+app.get('/:current_score/:wickets_fallen', (req, res, next) => {
+    try {
+        let current_score = req.params.current_score;
+        let wickets_fallen = req.params.wickets_fallen;
+
+        cricketScoreKeeper.setScoresFor(current_score, wickets_fallen)
+        
+        res.render('scoreFor', {
+            scoreTotal: cricketScoreKeeper.getCurrentScore(),
+            scoresFor: cricketScoreKeeper.getScoresFor()
+        });
+        
+    } catch (error) {
+        next(error)
+    }
 });
 
 const PORT = process.env.PORT || 4000;
