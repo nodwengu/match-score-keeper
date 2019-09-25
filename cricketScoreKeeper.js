@@ -9,9 +9,9 @@ module.exports = function CricketScoreKeeper() {
   function setScore(scoreForOver) {
     let scores = scoreForOver.split('')
 
-    if(scores.length > 5){ return }
-    if(maxOvers <= 0) { return }
-    if(totalWicketsAvail <= 0) { return }
+    // if(scores.length > 5){ return }
+    // if(maxOvers <= 0) { return }
+    // if(totalWicketsAvail <= 0) { return }
     
     for(let score of scores) {
       if(score === 'w') {
